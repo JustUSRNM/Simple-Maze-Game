@@ -91,20 +91,16 @@ valid_moves = {
     "three_way": {"l", "f", "r"},
     "exit": {}  # No valid moves, this is where you win
 }
-
 # Mapping of the short input to the full word
 move_names = {"l": "left", "f": "forward", "r": "right"}
 
 #variables of the game
 depth = 0  # Tracks how deep the user is in the maze, the deeper you are the higher the chance of finding the exit
-
-
 def get_random_hallway(depth):
     """Randomly selects a hallway type, increasing the exit chance as depth increases."""
     hallways_list = ["left_right", "left_forward", "right_forward", "three_way"]
     # Exit probability starts low and increases with depth
     exit_chance = min(0.02 + (depth * 0.02), 0.5)  # Max of 50% chance at deep levels
-    # Generate probabilities dynamically
     hallway_chances = [0.25, 0.25, 0.25, 0.25 - exit_chance]  # Reduce total hallway chance for exit
     hallway_chances.append(exit_chance)  # increase exit chance
     # Select hallway based on probabilities
@@ -113,7 +109,6 @@ def get_random_hallway(depth):
 
 # Gameplay Loop    
 while True:
-    depth = 0  # Reset depth on restart
     current_hallway = get_random_hallway(depth)  # Start with a random hallway
     
     while True:
@@ -131,10 +126,10 @@ while True:
             current_hallway = get_random_hallway(depth)  # Generate new hallway
         else:
             print("Invalid direction! Try again.\n")
-            # No change in hallway, it remains the same
+            
 
     # Prompt player to restart
     restart = input('Type "restart" to return to the maze or anything else to quit: ').strip().lower()
     if restart != "restart":
         print("Thanks for playing!")
-        break  # End the entire game loop
+        break  # Ends the entire game
