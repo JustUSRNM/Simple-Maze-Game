@@ -109,6 +109,7 @@ def get_random_hallway(depth):
 
 # Gameplay Loop    
 while True:
+    depth = 0  # Tracks how deep the user is in the maze, the deeper you are the higher the chance of finding the exit
     current_hallway = get_random_hallway(depth)  # Start with a random hallway
     
     while True:
